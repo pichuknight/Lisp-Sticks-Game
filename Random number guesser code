@@ -1,0 +1,29 @@
+(asdf:oos 'asdf:load-op :mt19937)
+;Creates function with optional parameters for a range values 
+(defun guess-the-number-feedback (&optional (min 1) (max 100))
+;Declared Variable num-guesses assigns to zero 
+  (let ((num-guesses 0)
+;Declared Variable num assigns to random(function) number acquiring a max & min value
+;variable num is used to compare the user input to the correct value 
+	(num (+ (random (1+ (- max min))) min))
+;Declared variable guess is equal to nil 
+  (guess nil))
+;Prints out to console while using the two arguments min & max from the parameters
+    (format t "Try to guess a number from ~:d to ~:d!~%" min max)
+;Loop through printing out text=Guess
+    (loop do (format t "Guess? ") ;Began of loop
+;Increments(increases by one) the value of num-guesses of how many times a user gives input to the console 
+	  (incf num-guesses)
+;Reads the user's input
+	  (setf guess (read))
+;Prints out if the user input is incorrect according to the value of num
+	  (format t "Your guess is ~[not a number.~;too small.~;too large.~;correct!~]~%"
+;Returns true if object is of a type of number otherwise false
+		  (cond ((not (numberp guess)) 0)
+			((< guess num) 1)
+			((> guess num) 2)
+			((= guess num) 3)))
+	  until (and (numberp guess)
+		     (= guess num))) ;End of loop
+;Prints out if the user input it correct and ends the program 
+    (format t "You got the number correct on the ~:r guess!~%" num-guesses)))
