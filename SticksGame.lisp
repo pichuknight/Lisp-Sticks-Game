@@ -1,26 +1,34 @@
-(defun randomFun (start end)
-       (+ start (random end)))
+;Updated from 10/25/2020
+;Creates Seed for Randomizer
+(defun randomFun ()
+       (setf *random-state* (make-random-state t)))
+;Runs SticksGame
 (defun stickGame ()
-  (defvar randNum (randomFun 10 50))
-  (defvar userIn nil)
-  (defvar giveUp 0)
-  (defvar increments 0)
-  (loop do (format t "'Guess the number of sticks (between 1 and 100) or give up with 0:'")
+  (let (
+  (randNum (+ (random 50)10))
+  (userIn nil)
+  (giveUp 0)
+  (increments 0))
+  (loop do (format t "Guess the number of sticks (between 10 and 50) or give up with 1:")
 	   (incf increments)
 	   (terpri)
 	   (setf userIn (read))
 	   (cond ((not (numberp userIn)) (print "Not a number"))
-		 ((< userIn 1) (print "Not possible"))
-		 ((> userIn 100) (print "Not possible"))
-		 ((< userIn randNum) (print "higher"))
-		 ((> userIn randNum) (print "lower"))
+		 ((= userIn 9) (print "To Low of allowed number try again"))
+		 ((> userIn 50) (print "To High of allowed number try again"))
+		 ((< userIn randNum) (print "Higher"))
+		 ((> userIn randNum) (print "Lower"))
 		 ((= userIn randNum) (print "YOU WIN"))
+		 ((= userIn giveUp) (print "You gave up"))
 		 )
-	until (and (= userIn randNum)
-		   (or (= userIn giveUp)))))
+;Breaks out Loop
+;Checks if input is a number
+	until (and (numberp userIn)
+		   (or (= userIn randNum) (= userIn giveUp))))))
+
 
 ;Runs a text base menu to allow user to play game.
-(defun condations()
+(defun Menu()
 ;Defining Local variables.
   (let (
     (gameone 1)
@@ -34,18 +42,18 @@
     ;Increase the loop by one. 
     (incf increments)
     ;Takes input from the user.
-    (terpri)
     (setf userinput (read))
 ;Checking 'userinput' value and output the what the condition is equal to.
     (cond ((not (numberp userinput)) (print "Not a number"))
 	((< userinput gameone) (print "Not a option"))
 	((> userinput gamethree) (print "Not a option"))
-	((= userinput gameone) (print "Playing Sticks Game") (stickGame))
+	((= userinput gameone) (stickGame))
 	((= userinput gametwo) (print "Playing Card Game"))
 	((= userinput gamethree) (print "Exit menu"))
 	)
-  ;Break out of loop if:
+					;Break out of loop if:
+	 ;Checks if input is a number
       until (and (numberp userinput)
 		 (or (= userinput gameone) (= userinput gametwo) (= userinput gamethree))))))
-(condations)
-            
+
+
