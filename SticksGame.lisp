@@ -1,4 +1,4 @@
-;Updated on 10/31/2020
+;Updated on 11/3/2020
 ;Creates Seed for Randomizer
 (defun randomFun ()
        (setf *random-state* (make-random-state t)))
@@ -6,12 +6,12 @@
 (defun stickGame ()
 ;Defining variables  
   (let (
-  (randNum (+ (random 50)10))
+  (randNum (random 51))
   (userIn nil)
   (giveUp 0)
   (increments 0))
   ;Begin of Loop  
-    (loop do (format t "Guess the number of sticks (between 10 and 50) or give up with 1:")
+    (loop do (format t "Guess the number of sticks (between 10 and 50) or give up with 0:")
 	 ;Increase the loop by one. 
 	   (incf increments)
 	 (terpri)
