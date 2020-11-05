@@ -1,0 +1,7 @@
+List of Common Lisp commands:
++ Indicating you have to press them at the same time
+- Let go of any other keys
+Ctrl + c + c --> Compiles code
+Esc - x -->Opens Slime
+Ctrl + X - 3 --> Split screen
+ch-par --> Checks for unmatched parentheses
