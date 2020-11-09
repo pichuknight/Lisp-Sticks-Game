@@ -1,3 +1,9 @@
+#|
+Currently testing it moved it into a different file for cleaner look:
+One it will break out loop if the player quits, if the player has played three times (I think that's how it works), if the player gets 21, if the player is broke, and if the player has more than the dealer. 
+...Not 100% how blackjack works so we can talk more about it to make sure the logic works, also learned that to add two variables we use (incf variablename variablename) and I moved all the if type logic into one condition block.
+|#
+;11/8/2020
 ;CardGameTesting
 ;Random Seed maker
 (defun randomFun ()
